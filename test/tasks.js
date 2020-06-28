@@ -1,10 +1,74 @@
-var tasks = artifacts.require("./Tasks.sol");
+const Tasks = artifacts.require("./Tasks.sol");
 
-contract('TodoList', (accounts) => {
-  before(async () => {
-    this.todoList = await TodoList.deployed()
+
+contract('Tasks', function(accounts) {
+  it("deploys successful", function() {
+    return Tasks.deployed().then(function(instance) {
+    	assert.notEqual(accounts[0], 0x0)
+    	assert.notEqual(accounts[0], '')
+	    assert.notEqual(accounts[0], null)
+	    assert.notEqual(accounts[0], undefined)
+    });
+  });
+  it("check default value", function() {
+    return Tasks.deployed().then(function(instance) {
+      return instance.value(accounts[0]);
+    }).then(function(balance) {
+      assert.equal(balance, 2);
+    });
+  });
+  it("check added task", function() {
+    return Tasks.deployed().then(function(instance) {
+      return instance.addTask("Demo1" , {from: accounts[1]});
+    }).then(function(ins) {
+      assert.equal(ins.logs[0].args._task,"Demo1");
+
+      assert.equal(ins.logs[0].args.id.toNumber(),1);
+
+      assert.equal(ins.logs[0].args.completed,false);
+
+      assert.equal(ins.logs[0].args._value.toNumber(), 1);
+    });
+  });
+  it("check added task for contract init account", function() {
+    return Tasks.deployed().then(function(instance) {
+      return instance.addTask("Demo2" , {from: accounts[0]});
+    }).then(function(ins) {
+      assert.equal(ins.logs[0].args._task,"Demo2");
+
+      assert.equal(ins.logs[0].args.id.toNumber(),3);
+
+      assert.equal(ins.logs[0].args.completed,false);
+
+      assert.equal(ins.logs[0].args._value.toNumber(), 3);
+    });
+  });
+  /*
+  it("deploys successful", function() {
+    return Tasks.deployed().then(function(instance) {
+      return instance.value(accounts[0]);
+    }).then(function(balance) {
+      assert.equal(balance, 2);
+    });
+  });
+  it("deploys successful", function() {
+    return Tasks.deployed().then(function(instance) {
+      return instance.value(accounts[0]);
+    }).then(function(balance) {
+      assert.equal(balance, 2);
+    });
+  });*/
+
+});
+/*
+
+  it('deploys successfully', async () => {
+    const address = await this.todoList.address
+    assert.notEqual(address, 0x0)
+    assert.notEqual(address, '')
+    assert.notEqual(address, null)
+    assert.notEqual(address, undefined)
   })
-
 
   it('lists tasks', async () => {
     const tasks = await this.todoList.value("0x7F586200E08cE4DdcBedb8cA42A0B143948Feaa0")
@@ -46,6 +110,6 @@ contract('TodoList', (accounts) => {
     assert.equal(event.id.toNumber(), 2)
     assert.equal(event.content, 'A new task')
     assert.equal(event.completed, false)*/
-  })
+  /*})
 
-})
+})*/

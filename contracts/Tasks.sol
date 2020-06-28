@@ -42,7 +42,7 @@ contract Tasks {
 		info  =  value[msg.sender];
 		value[msg.sender].task[info.count+1] = TaskList(info.count+1 , _task, false);
 		value[msg.sender] = Info(info.count+1);
-		emit Taskadded(value[msg.sender].task[2].task , value[msg.sender].task[2].id , value[msg.sender].task[2].completed , info.count+1);
+		emit Taskadded(value[msg.sender].task[info.count+1].task , value[msg.sender].task[info.count+1].id , value[msg.sender].task[info.count+1].completed , info.count+1);
 	}
 	/*
 	function getBalanceInEth(address addr) public view returns(uint){
