@@ -34,6 +34,9 @@ contract Tasks {
 	function getCompleted(uint id) public view  returns (bool){
 			return value[msg.sender].task[id].completed;
 	}
+	function getId(uint id) public view  returns (uint){
+			return value[msg.sender].task[id].id;
+	}
 	function addTask(string memory _task) public{
 		Info memory info;
 		info  =  value[msg.sender];

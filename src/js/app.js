@@ -49,11 +49,22 @@ App = {
   
 toggle: function (){
   console.log("called");
-  $('input.toggleCheck:checkbox:checked').each(function () {
-
-    var sThisVal = $(this).val();
-    console.log(sThisVal);
-});
+  $("#pendingTask input").each(function (){
+      if($("#"+this.id).prop('checked') == true){
+        var val = this.value;
+          App.contracts.Tasks.deployed().then(function(instance) {
+          taskInstance = instance;
+          return taskInstance;
+        }).then(function(taskIn) {
+          console.log(val);
+          taskIn.toggleTask(val).then(function(val){
+            console.log(val);
+          return App.render();
+          });
+        });
+      }
+  });
+  
 },
 render: function() {
   var taskInstance;
@@ -79,24 +90,33 @@ render: function() {
       completedTask.empty();
       var pendingTask = $("#pendingTask");
       pendingTask.empty();
-      var ok = 1;
       for(var i = 1 ; i <= count;i++){
       var taskList;
-
+      var status;
       taskIn.getTask(i).then(function (task){
           //console.log(task);
           taskList = task;
+          
       });
       taskIn.getCompleted(i).then(function (check){
           //console.log(check);
           //console.log(taskList);
-          if(check){
-              completeTask.append("<p>" + taskList + "</p>");
+          /*if(check){
+              completedTask.append("<p>" + taskList + "</p>");
           }
           else{
-              pendingTask.append('<label><input type="checkbox"  id="toggleBox"  value="'+ok+'">' + taskList + "</label>");
-              console.log(ok);
+              pendingTask.append('<div class="checkbox">  <label><input type="checkbox"  id="toggleBox'+ ok +'"  value="'+ok+'">' + taskList + "</label></div>");
+              console.log(i);
               ok++;
+          }*/
+          status = check;
+      });
+      taskIn.getId(i).then(function(id){
+          if(status){
+              completedTask.append("<p>" + taskList + "</p>");
+          }
+          else{
+              pendingTask.append('<div class="checkbox">  <label><input type="checkbox"  id="toggleBox'+ id +'"  value="'+id+'">' + taskList + "</label></div>");
           }
       });
       }
