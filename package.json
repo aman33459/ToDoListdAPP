@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "description": "Make API-Endpoints for Ethereum BlockChain",
   "scripts": {
+    "dev" : "lite-server",
     "start": "nodemon server.js",
     "test": "truffle test test/*"
   },

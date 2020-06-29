@@ -23,11 +23,11 @@ app.post("/addtask", function(req, res) {
     var newTask = req.body.newtask;
     //add the new task from the post route
     task.push(newTask);
-    truffle_connect.done(newTask  , (list) =>{
+    truffle_connect.done(newTask  , req.body.account ,  (list) =>{
     res.render("index", { task: task, complete: complete });     
     });
 });
-
+/*
 app.post("/removetask", function(req, res) {
     var completeTask = req.body.check;
     //check for the "typeof" the different completed task, then add into the complete task
@@ -44,8 +44,9 @@ app.post("/removetask", function(req, res) {
     truffle_connect.done(completeTask  , (list) =>{
     res.render("index", { task: task, complete: complete });     
     });
-});
+});*/
 app.get("/", function(req, res) {
+    
     res.render("index", { task: task, complete: complete });
 });
 /*

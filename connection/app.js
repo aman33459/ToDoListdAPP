@@ -1,15 +1,19 @@
 const contract = require('truffle-contract');
 
-const metacoin_artifact = require('../build/contracts/MetaCoin.json');
-var MetaCoin = contract(metacoin_artifact);
+
+const tasks = require('../build/contracts/Tasks.json');
+var task = contract(tasks);
+//var MetaCoin = contract(metacoin_artifact);
 
 module.exports = {
-  start: function(callback) {
+  done: function(callback) {
     var self = this;
     // Bootstrap the MetaCoin abstraction for Use.
-    MetaCoin.setProvider(self.web3.currentProvider);
+    task.setProvider(self.web3.currentProvider);
 
-    // Get the initial account balance so it can be displayed.
+    // Get the initial acThe loser should donate 20$ to charity or do some voluntary work. What a loser, am I right?
+
+     //count balance so it can be displayed.
     self.web3.eth.getAccounts(function(err, accs) {
 
       if (err != null) {
@@ -21,13 +25,17 @@ module.exports = {
         console.log("Couldn't get any accounts! Make sure your Ethereum client is configured correctly.");
         return;
       }
+      task.deployed().then(function(instance){
+          val = instance;
+          return instance.add
+      });
       self.accounts = accs;
       self.account = self.accounts[2];
 
       callback(self.accounts);
     });
   },
-  refreshBalance: function(account, callback) {
+  /*refreshBalance: function(account, callback) {
     var self = this;
 
     // Bootstrap the MetaCoin abstraction for Use.
@@ -43,7 +51,8 @@ module.exports = {
         console.log(e);
         callback("Error 404");
     });
-  },
+  },*/
+/*
   sendCoin: function(amount, sender, receiver, callback) {
     var self = this;
 
@@ -62,5 +71,5 @@ module.exports = {
       console.log(e);
       callback("ERROR 404");
     });
-  }
+  }*/
 }
