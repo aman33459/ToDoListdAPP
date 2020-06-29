@@ -12,10 +12,10 @@ contract Tasks {
 		uint count;
 		mapping (uint => TaskList) task;
 	}
-	constructor () public{
+	/*constructor () public{
 		addTask('Aman');
 		addTask('ok');
-	}
+	}*/
 	//
 	// mapping[address] =>info
 	// address info { count and mapping[cout]=>list }   
