@@ -5,7 +5,22 @@
 The motivation for the project was to use blockchain to make a Decentralized ToDo Application(dAPP). The App has a text area where you can enter new task which moves to list of pending task.Tasks in pending list can be clicked and marked as completed and it then moves to completed task.The main advantage of the application is that it is peer to peer to application, that is you dont need to connect to any centralized server for storing and accessing data rather all of the data are stored in a decentralized manner in the blockchain(Ethereum blockchain was used here).
 
 ## Screenshots
-
+   
+   ![Alt Text](https://github.com/aman33459/ToDoListdAPP/blob/master/images/1.png)
+   
+   ![Alt Text](https://github.com/aman33459/ToDoListdAPP/blob/master/images/2.png)
+   
+   ![Alt Text](https://github.com/aman33459/ToDoListdAPP/blob/master/images/3.png)
+   
+   ![Alt Text](https://github.com/aman33459/ToDoListdAPP/blob/master/images/4.png)
+   
+   ![Alt Text](https://github.com/aman33459/ToDoListdAPP/blob/master/images/5.png)
+   
+   ![Alt Text](https://github.com/aman33459/ToDoListdAPP/blob/master/images/6.png)
+   
+   ![Alt Text](https://github.com/aman33459/ToDoListdAPP/blob/master/images/7.png)
+   
+   
 
 ## Setup
  ### Prerequisites:
